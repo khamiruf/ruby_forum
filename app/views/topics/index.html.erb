@@ -1,0 +1,11 @@
+<h1>Welcome, to the ForUSm!</h1>
+<%= image_tag("homePageIcon.jpeg", id:"home-page-icon", class: "img-responsive")%>
+<h2>Exciting Conversations!</h2>
+<%= link_to "New Topic", new_topic_path %>
+<ul>
+  <% @topics.each do |topic|%>
+    <li>
+      <%= link_to topic.title, topic%>
+    </li>
+  <%end%>
+</ul>

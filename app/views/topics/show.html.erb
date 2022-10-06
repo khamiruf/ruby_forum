@@ -1,0 +1,35 @@
+<h1><%= @topic.title %></h1>
+<p><%= @topic.description%></p>
+<ul>
+  <li><%=link_to "Edit topic", edit_topic_path(@topic)%></li>
+  <li><%=link_to "Destroy", topic_path(@topic), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+    }%></li>
+  <li><%=link_to "Home", root_path%></li>
+</ul>
+<h2>Posts</h2>
+<% @topic.posts.each do |post| %>
+  <p>
+    <strong>User:</strong>
+    <%=post.user%>
+  </p>
+  <p>
+    <strong>Post:</strong>
+    <%=post.body%>
+  </p>
+<%end%>
+<h2>Create New Post</h2>
+<%= form_with model: [@topic, @topic.posts.build ] do |form|%>
+  <p>
+    <%= form.label :user%>
+    <%= form.text_field :user%>
+  </p>
+  <p>
+    <%= form.label :body%>
+    <%= form.text_area :body%>
+  </p>
+  <p>
+    <%=form.submit%>
+  </p>
+<%end%>
